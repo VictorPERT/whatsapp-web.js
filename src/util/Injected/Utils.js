@@ -483,6 +483,10 @@ exports.LoadUtils = () => {
             ...extraOptions,
         };
 
+        // MediaData exposes an internal __x_id that can overwrite the Msg ID.
+        // Keep the valid MsgKey created above for outgoing media messages.
+        delete message.__x_id;
+
         // Bot's won't reply if canonicalUrl is set (linking)
         if (botOptions) {
             delete message.canonicalUrl;
